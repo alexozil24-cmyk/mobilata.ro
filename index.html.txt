@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobilaTa.ro - Dormitoare Moderne la Prețuri de Importator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a1a; 
+            --accent-color: #c5a059;  
+            --whatsapp-color: #25d366;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 8px 0;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .contact-box a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 32px; color: var(--primary-color); position: relative; padding-bottom: 10px; display: inline-block; }
+        .section-title h2::after { content: ''; width: 60px; height: 3px; background: var(--accent-color); position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
+
+        /* Grid Produse Actualizat cu Poze */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        
+        .product-card { 
+            background: var(--white); 
+            border: 1px solid #eee; 
+            transition: all 0.3s ease; 
+            overflow: hidden; /* Important pentru rotunjirea pozelor */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--accent-color); }
+
+        .product-image { 
+            height: 220px; 
+            background-color: #f0f0f0; 
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info { padding: 20px; text-align: center; flex-grow: 1; }
+        .product-name { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--primary-color); }
+        .product-price { font-size: 22px; color: var(--accent-color); font-weight: 700; margin-bottom: 15px; }
+        .badge-delivery { font-size: 11px; background: #fff8e1; color: #f57f17; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: bold; }
+
+        /* Butoane Contact */
+        .btn-call { background-color: var(--primary-color); color: white; padding: 12px; text-decoration: none; display: block; font-weight: bold; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
+        .btn-whatsapp { background-color: var(--whatsapp-color); color: white; padding: 12px; text-decoration: none; display: block; font-weight: bold; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
+        .btn-call:hover { background-color: #333; }
+        .btn-whatsapp:hover { background-color: #1ebe57; }
+
+        /* Recenzii */
+        .reviews-section { background: #fff; padding: 60px 0; border-top: 1px solid #eee; }
+        .review-card { background: var(--light-bg); padding: 25px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid var(--accent-color); }
+        .stars { color: #f1c40f; margin-bottom: 10px; }
+        .review-text { font-style: italic; color: #555; }
+        .review-author { font-weight: bold; margin-top: 10px; display: block; color: var(--primary-color); }
+
+        footer { background-color: #111; color: #888; text-align: center; padding: 50px 20px; }
+        footer strong { color: #fff; }
+
+        /* WhatsApp Floating Button */
+        .float-wa { position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp-color); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 1001; text-decoration: none; transition: 0.3s; }
+        .float-wa:hover { transform: scale(1.1); }
+
+        @media (max-width: 768px) { header { flex-direction: column; gap: 10px; } .contact-box { margin-top: 5px; } }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">Livrare rapidă 3-5 zile lucrătoare | Plata la livrare</div>
+
+<header>
+    <a href="/" class="logo">MOBILA<span>TA</span>.ro</a>
+    <div class="contact-box">
+        <a href="tel:0757477926"><i class="fas fa-phone-alt"></i> 0757 477 926</a>
+    </div>
+</header>
+
+<div class="hero">
+    <h1>Transformă-ți dormitorul cu MobilaTa.ro</h1>
+    <p>Calitate premium la prețuri accesibile, livrat direct acasă.</p>
+</div>
+
+<div class="container">
+    <div class="section-title"><h2>Dormitoare în Stoc</h2></div>
+    <div class="product-grid" id="catalog"></div>
+</div>
+
+<section class="reviews-section">
+    <div class="container">
+        <div class="section-title"><h2>Recenzii Clienți</h2></div>
+        <div class="review-card">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="review-text">"Am cumpărat modelul Hera. Pozele de pe site corespund 100% cu realitatea. Foarte mulțumită!"</p>
+            <span class="review-author">- Maria I.</span>
+        </div>
+        <div class="review-card">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="review-text">"Livrarea a durat fix 4 zile. Personalul de pe WhatsApp a fost foarte răbdător cu întrebările mele."</p>
+            <span class="review-author">- Cristian D.</span>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p><strong>MobilaTa.ro</strong> | Contact: 0757 477 926</p>
+    <p>&copy; 2026 Mobilata Online. Toate drepturile rezervate.</p>
+</footer>
+
+<a href="https://wa.me/40757477926" class="float-wa" target="_blank" title="Contact WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+    const tel = "0757477926";
+    const waLinkBase = "https://wa.me/40757477926?text=Salut!%20Sunt%20interesat%20de%20produsul:%20";
+
+    // AICI ADAUGI LINK-URILE POZELOR TALE REALE
+    const dormitoare = [
+        { nume: "Dormitor Hera Premium", pret: "1.300 Lei", imagine: "URL-POZA-HERA.jpg" },
+        { nume: "Dormitor Hera cu Oglindă", pret: "1.450 Lei", imagine: "URL-POZA-HERA-OGLINDA.jpg" },
+        { nume: "Dormitor Maia Wenge", pret: "1.699 Lei", imagine: "URL-POZA-MAIA.jpg" },
+        { nume: "Dormitor Beirut Luxury", pret: "1.999 Lei", imagine: "URL-POZA-BEIRUT.jpg" },
+        { nume: "Dormitor Texas Style", pret: "1.950 Lei", imagine: "URL-POZA-TEXAS.jpg" },
+        { nume: "Dormitor Giulia (160x200)", pret: "1.450 Lei", imagine: "URL-POZA-GIULIA.jpg" }
+    ];
+
+    const catalog = document.getElementById('catalog');
+    dormitoare.forEach(d => {
+        catalog.innerHTML += `
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${d.imagine}" alt="${d.nume}" onerror="this.src='https://via.placeholder.com/400x300?text=Imagine+Dormitor'">
+                </div>
+                <div class="product-info">
+                    <div class="product-name">${d.nume}</div>
+                    <div class="badge-delivery"><i class="fas fa-truck"></i> Livrare: 3-5 Zile</div>
+                    <div class="product-price">${d.pret}</div>
+                    <a href="tel:${tel}" class="btn-call"><i class="fas fa-phone"></i> Sună acum</a>
+                    <a href="${waLinkBase}${encodeURIComponent(d.nume)}" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Detalii WhatsApp</a>
+                </div>
+            </div>
+        `;
+    });
+</script>
+</body>
+</html>
